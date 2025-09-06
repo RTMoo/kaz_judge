@@ -1,0 +1,59 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    env_file:
+      - .env
+    volumes:
+      - ./backend/src:/src
+    environment:
+      - REDIS_HOST=redis
+      - PYTHONUNBUFFERED=1
+    ports:
+      - "8000:8000"
+    depends_on:
+      redis:
+        condition: service_healthy
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    networks:
+      - app_net
+
+  celery:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: celery
+    command: ["celery", "-A", "config", "worker", "--loglevel=info"]
+    env_file:
+      - .env
+    volumes:
+      - ./backend/src:/src
+    environment:
+      - REDIS_HOST=redis
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - app_net
+
+  redis:
+    image: redis:7
+    container_name: redis
+    volumes:
+      - redis_data:/data
+    networks:
+      - app_net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  redis_data:
+
+networks:
+  app_net:
