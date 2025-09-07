@@ -1,3 +1,4 @@
+import shutil
 from pathlib import Path
 from problems.models import Problem
 from slugify import slugify
@@ -28,4 +29,8 @@ def remove_problem_dir_structure(problem: Problem) -> None:
         / "problems_db"
         / f"{problem.id}-{slugify(problem.title)}"
     )
-    dir_path.rmdir()
+
+    try:
+        shutil.rmtree(dir_path)
+    except FileNotFoundError:
+        print(f"Directory {dir_path} not found")
