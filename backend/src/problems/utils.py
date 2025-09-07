@@ -1,7 +1,6 @@
 import shutil
 from pathlib import Path
 from problems.models import Problem
-from slugify import slugify
 
 
 def create_directory(path: Path) -> None:
@@ -13,8 +12,9 @@ def create_problem_dir_structure(problem: Problem) -> None:
     """Создает директории для задачи."""
     dir_path = (
         Path(__file__).resolve().parent.parent
+        / "media"
         / "problems_db"
-        / f"{problem.id}-{slugify(problem.title)}"
+        / f"{problem.id}"
     )
 
     create_directory(dir_path)
@@ -26,8 +26,9 @@ def remove_problem_dir_structure(problem: Problem) -> None:
     """Удаляет директории для задачи."""
     dir_path = (
         Path(__file__).resolve().parent.parent
+        / "media"
         / "problems_db"
-        / f"{problem.id}-{slugify(problem.title)}"
+        / f"{problem.id}"
     )
 
     try:
