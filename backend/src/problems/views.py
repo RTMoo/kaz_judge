@@ -3,10 +3,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import permissions
 from rest_framework.request import Request
-from problems import serializers
-from problems import services
-from problems import utils
-from problems import selectors
+from . import serializers
+from . import services
+from . import utils
+from . import selectors
 
 
 class CreateProblemView(APIView):
