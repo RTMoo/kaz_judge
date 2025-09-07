@@ -14,6 +14,16 @@ def create_test(
     input_file: InMemoryUploadedFile | TemporaryUploadedFile,
     problem: Problem,
 ) -> Test:
+    """
+    Создает тесты.
+    
+    Args:
+        input_file (InMemoryUploadedFile | TemporaryUploadedFile): Файл с тестами.
+        problem (Problem): Задача.
+
+    Returns:
+        Test: Тесты.
+    """
     ext = utils.get_file_suffix(input_file.name)
 
     if ext not in ACCEPTED_EXTENSIONS:
