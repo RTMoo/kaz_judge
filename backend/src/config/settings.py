@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "accounts",
     "corsheaders",
     "problems",
+    "tests",
 ]
 
 MIDDLEWARE = [
