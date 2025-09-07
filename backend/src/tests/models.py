@@ -1,12 +1,5 @@
 from django.db import models
-
-
-def test_input_upload_path(instance, filename):
-    """
-    Генерирует путь для загрузки входного файла теста.
-    Пример: problems_db/{problem_id}/tests/{test_id}_input.txt
-    """
-    return f"problems_db/{instance.problem.id}/tests/{instance.id or 'tmp'}_input.txt"
+from .utils import test_input_upload_path
 
 
 class Test(models.Model):
