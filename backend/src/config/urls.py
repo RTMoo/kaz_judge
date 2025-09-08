@@ -13,7 +13,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/accounts/", include("accounts.urls")),
     path("api/problems/", include("problems.urls")),
-    path("api/tests/", include("tests.urls")),
+
     # Документация
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(

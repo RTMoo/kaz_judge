@@ -16,7 +16,7 @@ def create_test(
 ) -> Test:
     """
     Создает тесты.
-    
+
     Args:
         input_file (InMemoryUploadedFile | TemporaryUploadedFile): Файл с тестами.
         problem (Problem): Задача.
@@ -42,7 +42,7 @@ def create_test(
             for file_name in archive.namelist():
                 if file_name.startswith("__MACOSX/"):
                     continue
-                
+
                 if utils.get_file_suffix(file_name) != ".txt":
                     continue
 
