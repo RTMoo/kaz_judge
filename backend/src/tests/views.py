@@ -12,11 +12,11 @@ class CreateTestView(APIView):
     permission_classes = [permissions.IsAdminUser]
     serializer_class = serializers.TestSerializer
 
-    def post(self, request: Request):
+    def post(self, request: Request, problem_id: int):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        problem = get_problem(id=serializer.validated_data["problem_id"])
+        problem = get_problem(id=problem_id)
         test = services.create_test(
             input_file=serializer.validated_data["input_file"],
             problem=problem,

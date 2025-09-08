@@ -9,7 +9,7 @@ urlpatterns = [
         name="create_problem",
     ),
     path(
-        "list/",
+        "",
         views.ProblemListView.as_view(),
         name="problem_list",
     ),
