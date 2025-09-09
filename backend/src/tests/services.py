@@ -61,3 +61,18 @@ def create_test(
                 created_tests.append(test)
 
         return created_tests
+
+
+def delete_test(test: Test) -> None:
+    """
+    Удаляет тест.
+
+    Args:
+        test (Test): Удаляемый тест.
+
+    Returns:
+        None
+    """
+
+    test.input_file.delete(save=False)
+    test.delete()

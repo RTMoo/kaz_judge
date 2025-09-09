@@ -39,3 +39,15 @@ class ListTestView(APIView):
         data = self.serializer_class(tests, many=True).data
 
         return Response(status=status.HTTP_200_OK, data=data)
+
+
+class DeleteTestView(APIView):
+    permission_classes = [permissions.IsAdminUser]
+    serializer_class = serializers.TestSerializer
+
+    def delete(self, request: Request, problem_id: int, test_id: int):
+        problem_exists_or_404(problem_id=problem_id)
+        test = selectors.get_problem_test(problem_id=problem_id, test_id=test_id)
+        services.delete_test(test=test)
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
