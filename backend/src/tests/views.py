@@ -39,4 +39,3 @@ class ListTestView(APIView):
         data = self.serializer_class(tests, many=True).data
 
         return Response(status=status.HTTP_200_OK, data=data)
-        

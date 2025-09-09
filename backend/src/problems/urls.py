@@ -31,5 +31,5 @@ urlpatterns = [
     path(
         "<int:problem_id>/tests/",
         include("tests.urls"),
-    )
+    ),
 ]
