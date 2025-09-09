@@ -5,7 +5,8 @@ from rest_framework import status
 from rest_framework import permissions
 from . import serializers
 from . import services
-from problems.selectors import get_problem
+from . import selectors
+from problems.selectors import get_problem, problem_exists_or_404
 
 
 class CreateTestView(APIView):
@@ -25,3 +26,17 @@ class CreateTestView(APIView):
         data = self.serializer_class(test, many=True).data
 
         return Response(status=status.HTTP_201_CREATED, data=data)
+
+
+class ListTestView(APIView):
+    permission_classes = [permissions.AllowAny]
+    serializer_class = serializers.TestSerializer
+
+    def get(self, request: Request, problem_id: int):
+        problem_exists_or_404(problem_id=problem_id)
+        tests = selectors.get_problem_tests(problem_id=problem_id)
+
+        data = self.serializer_class(tests, many=True).data
+
+        return Response(status=status.HTTP_200_OK, data=data)
+        

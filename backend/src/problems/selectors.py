@@ -1,5 +1,6 @@
 from problems.models import Problem
 from rest_framework.exceptions import NotFound
+from django.db.models import QuerySet
 
 
 def get_problem(**kwargs) -> Problem:
@@ -23,8 +24,16 @@ def get_problem(**kwargs) -> Problem:
     return problem
 
 
-def get_problems() -> list[Problem]:
+def get_problems() -> QuerySet[Problem]:
     """
     Возвращает все задачи.
     """
     return Problem.objects.all()
+
+
+def problem_exists_or_404(problem_id: int) -> None:
+    """
+    Если нет задачи вызовет исключение NotFound
+    """
+    if not Problem.objects.filter(id=problem_id).exists():
+        raise NotFound(detail="Задача не найдена.")
