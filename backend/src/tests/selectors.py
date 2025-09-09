@@ -1,6 +1,6 @@
 from tests.models import Test
 from django.db.models import QuerySet
-from rest_framework.exceptions import NotFound, ValidationError
+from rest_framework.exceptions import NotFound
 
 
 def get_problem_tests(problem_id: int) -> QuerySet[Test]:
