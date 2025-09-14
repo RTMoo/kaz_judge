@@ -1,4 +1,18 @@
 from django.db import models
+from tests.utils import get_file_suffix
+
+
+def set_solution_path(
+    instance,
+    filename,
+) -> str:
+    """
+    Генерирует путь для загрузки корректного решения.
+    """
+    ext = get_file_suffix(filename)
+    new_filename = f"correct_solution{ext}"
+
+    return f"problems_db/{instance.id}/solutions/{new_filename}"
 
 
 class Problem(models.Model):
@@ -6,6 +20,7 @@ class Problem(models.Model):
     condition = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    solution = models.FileField(upload_to=set_solution_path)
 
     def __str__(self):
         return self.title
