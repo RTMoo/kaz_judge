@@ -1,5 +1,12 @@
 from django.db import models
-from .utils import test_input_upload_path
+from datetime import datetime
+
+
+def test_input_upload_path(instance, filename):
+    """
+    Генерирует путь для загрузки входного файла теста.
+    """
+    return f"problems_db/{instance.problem.id}/tests/input_{datetime.now()}.txt"
 
 
 class Test(models.Model):

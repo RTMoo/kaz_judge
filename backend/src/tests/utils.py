@@ -1,12 +1,4 @@
 from pathlib import Path
-from datetime import datetime
-
-
-def test_input_upload_path(instance, filename):
-    """
-    Генерирует путь для загрузки входного файла теста.
-    """
-    return f"problems_db/{instance.problem.id}/tests/{datetime.now()}_input.txt"
 
 
 def get_file_suffix(

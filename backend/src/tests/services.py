@@ -39,7 +39,7 @@ def create_test(
         created_tests = []
 
         with zipfile.ZipFile(input_file, "r") as archive:
-            for file_name in archive.namelist():
+            for file_name in sorted(archive.namelist()):
                 if file_name.startswith("__MACOSX/"):
                     continue
 
