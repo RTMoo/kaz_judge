@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "problems",
     "tests",
+    "solutions",
 ]
 
 MIDDLEWARE = [
