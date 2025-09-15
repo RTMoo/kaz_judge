@@ -23,3 +23,15 @@ class SetProblemSolutionView(APIView):
         )
 
         return Response(status=status.HTTP_201_CREATED)
+
+
+class CompileProblemOutputsView(APIView):
+    permission_classes = [permissions.IsAdminUser]
+
+    def post(self, request: Request, problem_id: int):
+        problem = get_problem(id=problem_id)
+        services.compile_problem_outputs(
+            problem=problem,
+        )
+
+        return Response(status=status.HTTP_200_OK)

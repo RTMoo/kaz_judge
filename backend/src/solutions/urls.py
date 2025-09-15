@@ -8,4 +8,9 @@ urlpatterns = [
         views.SetProblemSolutionView.as_view(),
         name="set_solution",
     ),
+    path(
+        "compile-outputs/",
+        views.CompileProblemOutputsView.as_view(),
+        name="compile_outputs",
+    ),
 ]
