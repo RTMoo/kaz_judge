@@ -10,9 +10,9 @@ def set_solution_path(
     Генерирует путь для загрузки корректного решения.
     """
     ext = get_file_suffix(filename)
-    new_filename = f"correct_solution{ext}"
+    new_filename = f"solution{ext}"
 
-    return f"problems_db/{instance.id}/solutions/{new_filename}"
+    return f"problems_db/{instance.id}/{new_filename}"
 
 
 class Problem(models.Model):

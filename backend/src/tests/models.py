@@ -6,7 +6,7 @@ def test_input_upload_path(instance, filename):
     """
     Генерирует путь для загрузки входного файла теста.
     """
-    return f"problems_db/{instance.problem.id}/tests/input_{datetime.now()}.txt"
+    return f"problems_db/{instance.problem.id}/tests/input/{datetime.now()}.txt"
 
 
 class Test(models.Model):

@@ -1,6 +1,7 @@
 import shutil
 from pathlib import Path
 from problems.models import Problem
+from django.conf import settings
 
 
 def create_directory(path: Path) -> None:
@@ -11,22 +12,20 @@ def create_directory(path: Path) -> None:
 def create_problem_dir_structure(problem: Problem) -> None:
     """Создает директории для задачи."""
     dir_path = (
-        Path(__file__).resolve().parent.parent
-        / "media"
+        Path(settings.MEDIA_ROOT)
         / "problems_db"
         / f"{problem.id}"
     )
 
     create_directory(dir_path)
-    create_directory(dir_path / "tests")
-    create_directory(dir_path / "solutions")
+    create_directory(dir_path / "tests" / "input")
+    create_directory(dir_path / "tests" / "output")
 
 
 def remove_problem_dir_structure(problem: Problem) -> None:
     """Удаляет директории для задачи."""
     dir_path = (
-        Path(__file__).resolve().parent.parent
-        / "media"
+        Path(settings.MEDIA_ROOT)
         / "problems_db"
         / f"{problem.id}"
     )
