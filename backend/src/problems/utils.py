@@ -11,11 +11,7 @@ def create_directory(path: Path) -> None:
 
 def create_problem_dir_structure(problem: Problem) -> None:
     """Создает директории для задачи."""
-    dir_path = (
-        Path(settings.MEDIA_ROOT)
-        / "problems_db"
-        / f"{problem.id}"
-    )
+    dir_path = Path(settings.MEDIA_ROOT) / "problems_db" / f"{problem.id}"
 
     create_directory(dir_path)
     create_directory(dir_path / "tests" / "input")
@@ -24,11 +20,7 @@ def create_problem_dir_structure(problem: Problem) -> None:
 
 def remove_problem_dir_structure(problem: Problem) -> None:
     """Удаляет директории для задачи."""
-    dir_path = (
-        Path(settings.MEDIA_ROOT)
-        / "problems_db"
-        / f"{problem.id}"
-    )
+    dir_path = Path(settings.MEDIA_ROOT) / "problems_db" / f"{problem.id}"
 
     try:
         shutil.rmtree(dir_path)

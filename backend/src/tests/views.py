@@ -9,7 +9,7 @@ from . import selectors
 from problems.selectors import get_problem, problem_exists_or_404
 
 
-class CreateTestView(APIView):
+class AddTestView(APIView):
     permission_classes = [permissions.IsAdminUser]
     serializer_class = serializers.TestSerializer
 
@@ -18,7 +18,7 @@ class CreateTestView(APIView):
         serializer.is_valid(raise_exception=True)
 
         problem = get_problem(id=problem_id)
-        test = services.create_test(
+        test = services.add_test(
             input_file=serializer.validated_data["input_file"],
             problem=problem,
         )

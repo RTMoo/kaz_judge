@@ -3,9 +3,9 @@ from . import views
 
 urlpatterns = [
     path(
-        "create/",
-        views.CreateTestView.as_view(),
-        name="create_test",
+        "add/",
+        views.AddTestView.as_view(),
+        name="add_test/",
     ),
     path(
         "",

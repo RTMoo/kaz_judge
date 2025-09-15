@@ -10,12 +10,12 @@ from . import utils
 ACCEPTED_EXTENSIONS = [".txt", ".zip"]
 
 
-def create_test(
+def add_test(
     input_file: InMemoryUploadedFile | TemporaryUploadedFile,
     problem: Problem,
 ) -> Test:
     """
-    Создает тесты.
+    Добавляет тесты.
 
     Args:
         input_file (InMemoryUploadedFile | TemporaryUploadedFile): Файл с тестами.

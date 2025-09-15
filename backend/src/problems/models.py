@@ -20,7 +20,7 @@ class Problem(models.Model):
     condition = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    solution = models.FileField(upload_to=set_solution_path)
+    solution = models.FileField(upload_to=set_solution_path, null=True, blank=True)
 
     def __str__(self):
         return self.title
