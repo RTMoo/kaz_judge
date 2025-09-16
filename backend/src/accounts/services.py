@@ -25,10 +25,10 @@ def register_user(
     """
     try:
         user = get_user(email=email)
-        
+
         if user.email_verified:
             raise ValidationError(detail="Этот email уже используется")
-        
+
         user.username = username
         user.set_password(password)
         user.save()
