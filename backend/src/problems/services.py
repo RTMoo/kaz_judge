@@ -1,10 +1,12 @@
 from problems.models import Problem
 from problems import utils
+from accounts.models import CustomUser
 
 
 def create_problem(
     title: str,
     condition: str,
+    author: CustomUser,
 ) -> Problem:
     """
     Создает задачу.
@@ -17,6 +19,7 @@ def create_problem(
         Problem: Созданная задача.
     """
     return Problem.objects.create(
+        author=author,
         title=title,
         condition=condition,
     )

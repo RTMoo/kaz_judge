@@ -16,6 +16,11 @@ def set_solution_path(
 
 
 class Problem(models.Model):
+    author = models.ForeignKey(
+        "accounts.CustomUser",
+        on_delete=models.SET_NULL,
+        null=True,
+    )
     title = models.CharField(max_length=255)
     condition = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

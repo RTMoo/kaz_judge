@@ -16,7 +16,7 @@ def get_problem(**kwargs) -> Problem:
     Raises:
         NotFound: Если задача не найдена.
     """
-    problem = Problem.objects.filter(**kwargs).first()
+    problem = Problem.objects.filter(**kwargs).select_related("author").first()
 
     if not problem:
         raise NotFound(detail="Задача не найдена.")
@@ -28,7 +28,7 @@ def get_problems() -> QuerySet[Problem]:
     """
     Возвращает все задачи.
     """
-    return Problem.objects.all()
+    return Problem.objects.all().select_related("author")
 
 
 def problem_exists_or_404(problem_id: int) -> None:

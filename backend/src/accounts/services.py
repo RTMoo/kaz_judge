@@ -23,16 +23,16 @@ def register_user(
     Raises:
         ValidationError: Если email уже используется подтвержденным пользователем.
     """
-    user = get_user(email=email)
-    if user:
+    try:
+        user = get_user(email=email)
+        
         if user.email_verified:
             raise ValidationError(detail="Этот email уже используется")
-
-        # Обновить данные, если пользователь неактивен
+        
         user.username = username
         user.set_password(password)
         user.save()
-    else:
+    except NotFound:
         user = CustomUser.objects.create_user(
             username=username,
             email=email,

@@ -7,10 +7,11 @@ from . import serializers
 from . import services
 from . import utils
 from . import selectors
+from .permissions import IsProblemAuthor
 
 
 class CreateProblemView(APIView):
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = serializers.ProblemSerializer
 
     def post(self, request: Request):
@@ -18,6 +19,7 @@ class CreateProblemView(APIView):
         serializer.is_valid(raise_exception=True)
 
         problem = services.create_problem(
+            author=request.user,
             title=serializer.validated_data["title"],
             condition=serializer.validated_data["condition"],
         )
@@ -52,7 +54,7 @@ class ProblemListView(APIView):
 
 
 class UpdateProblemView(APIView):
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [IsProblemAuthor]
     serializer_class = serializers.ProblemSerializer
 
     def patch(self, request: Request, problem_id: int):
@@ -72,7 +74,7 @@ class UpdateProblemView(APIView):
 
 
 class DeleteProblemView(APIView):
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [IsProblemAuthor]
 
     def delete(self, request: Request, problem_id: int):
         problem = selectors.get_problem(id=problem_id)
