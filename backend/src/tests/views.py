@@ -10,7 +10,7 @@ from problems.selectors import get_problem, problem_exists_or_404
 
 
 class AddTestView(APIView):
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = serializers.TestSerializer
 
     def post(self, request: Request, problem_id: int):
@@ -42,7 +42,7 @@ class ListTestView(APIView):
 
 
 class DeleteTestView(APIView):
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = serializers.TestSerializer
 
     def delete(self, request: Request, problem_id: int, test_id: int):

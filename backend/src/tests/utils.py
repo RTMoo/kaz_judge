@@ -1,21 +1,11 @@
-from pathlib import Path
-
-
-def get_file_suffix(
-    file_name: str,
-    many: bool = False,
-) -> str | list[str]:
-    """
-    Возвращает расширение файла.
-
-    Args:
-        file_name (str): Имя файла.
-        many (bool, optional): Если True, то возвращает список расширений. По умолчанию False.
-
-    Returns:
-        str | list[str]: Расширение файла.
-    """
-    if not many:
-        return Path(file_name).suffix.lower()
-
-    return [ext.lower() for ext in Path(file_name).suffixes]
+def get_file_preview(file_path: str, max_lines: int = 5) -> str:
+    try:
+        with open(file_path, "r") as file:
+            lines = []
+            for i, line in enumerate(file):
+                if i >= max_lines:
+                    break
+                lines.append(line.strip())
+            return "\n".join(lines)
+    except FileNotFoundError:
+        return "[file missing]"

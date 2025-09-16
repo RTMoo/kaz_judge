@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "tests",
     "solutions",
     "submissions",
+    "commons",
 ]
 
 MIDDLEWARE = [

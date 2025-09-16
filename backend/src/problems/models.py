@@ -1,5 +1,5 @@
 from django.db import models
-from tests.utils import get_file_suffix
+from commons.utils import get_file_suffix
 
 
 def set_solution_path(

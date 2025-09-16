@@ -1,6 +1,6 @@
 from django.db import models
 from datetime import datetime
-from tests.utils import get_file_suffix
+from commons.utils import get_file_suffix
 
 
 def submit_file_upload_path(

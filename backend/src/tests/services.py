@@ -4,7 +4,7 @@ from problems.models import Problem
 from django.core.files.uploadedfile import InMemoryUploadedFile, TemporaryUploadedFile
 from rest_framework.exceptions import ValidationError
 from django.core.files.base import ContentFile
-from . import utils
+from commons.utils import get_file_suffix
 
 
 ACCEPTED_EXTENSIONS = [".txt", ".zip"]
@@ -24,7 +24,7 @@ def add_test(
     Returns:
         Test: Тесты.
     """
-    ext = utils.get_file_suffix(input_file.name)
+    ext = get_file_suffix(input_file.name)
 
     if ext not in ACCEPTED_EXTENSIONS:
         raise ValidationError("Неподдерживаемое расширение файла.")
@@ -43,7 +43,7 @@ def add_test(
                 if file_name.startswith("__MACOSX/"):
                     continue
 
-                if utils.get_file_suffix(file_name) != ".txt":
+                if get_file_suffix(file_name) != ".txt":
                     continue
 
                 file_bytes = archive.read(file_name)

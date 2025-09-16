@@ -17,7 +17,9 @@ def test_output_upload_path(instance, filename):
 
 
 class Test(models.Model):
-    input_file = models.FileField(upload_to=test_input_upload_path)
+    input_file = models.FileField(
+        upload_to=test_input_upload_path,
+    )
     output_file = models.FileField(
         upload_to=test_output_upload_path,
         null=True,
