@@ -63,10 +63,10 @@ def compile_problem_outputs(problem: Problem) -> None:
         raise ValidationError(detail="Сначало загрузите решение")
 
     for ind, test in enumerate(tests, start=1):
-        infile = Path(test.input_file.path)
-        outfile = output_dir / f"{ind}.out"
+        infile_path = Path(test.input_file.path)
+        outfile_path = output_dir / f"{ind}.out"
 
-        with open(infile, "r") as infile, open(outfile, "w") as outfile:
+        with open(infile_path, "r") as infile, open(outfile_path, "w") as outfile:
             subprocess.run(
                 ["python3", solution_path],
                 stdin=infile,
@@ -74,3 +74,7 @@ def compile_problem_outputs(problem: Problem) -> None:
                 stderr=subprocess.PIPE,
                 text=True,
             )
+
+        relative_path = outfile_path.relative_to(settings.MEDIA_ROOT)
+        test.output_file.name = str(relative_path)
+        test.save(update_fields=["output_file"])
