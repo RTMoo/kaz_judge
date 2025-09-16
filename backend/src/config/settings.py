@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     "problems",
     "tests",
     "solutions",
+    "submissions",
 ]
 
 MIDDLEWARE = [

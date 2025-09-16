@@ -9,7 +9,7 @@ from . import services
 
 
 class SetProblemSolutionView(APIView):
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = serializers.SolutionSerializer
 
     def post(self, request: Request, problem_id: int):
@@ -26,7 +26,7 @@ class SetProblemSolutionView(APIView):
 
 
 class CompileProblemOutputsView(APIView):
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request: Request, problem_id: int):
         problem = get_problem(id=problem_id)

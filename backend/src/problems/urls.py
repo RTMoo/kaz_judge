@@ -36,4 +36,8 @@ urlpatterns = [
         "<int:problem_id>/solutions/",
         include("solutions.urls"),
     ),
+    path(
+        "<int:problem_id>/submissions/",
+        include("submissions.urls"),
+    ),
 ]
